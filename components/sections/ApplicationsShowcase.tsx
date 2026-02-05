@@ -11,25 +11,25 @@ const applications = [
         title: "Branding & Corporate",
         desc: "Visiting cards, folders, letterheads, and brochures.",
         size: "col-span-1 md:col-span-2 row-span-2",
-        image: "/images/texture-foil.jpg" // Placeholder using existing texture
+        image: "/images/spot_uv_foil.jpeg" // Replaced placeholder
     },
     {
         title: "Packaging & Labels",
-        desc: "Product labels, prototype packaging, and rigid boxes.",
+        desc: "Product labels, foil stickers, and rigid boxes.",
         size: "col-span-1 md:col-span-1 row-span-1",
-        image: "/images/texture-uv.jpg" // Placeholder using existing texture
+        image: "/images/foil_stickers.jpeg" // Replaced placeholder
     },
     {
         title: "Events & Invitations",
         desc: "Wedding cards, premium invites, and event tickets.",
         size: "col-span-1 md:col-span-1 row-span-2",
-        image: "/images/mgi-hero.png" // Fallback to machine image if no specific image
+        image: "/images/envelopes.jpeg" // Replaced placeholder
     },
     {
         title: "Marketing Material",
         desc: "Flyers, standees, catalogs, and lookbooks.",
         size: "col-span-1 md:col-span-1 row-span-1",
-        image: "/images/ricoh-c7500.png" // Fallback to machine image
+        image: "/images/cmyk_white_digital_print.jpeg" // Replaced placeholder
     },
 ];
 

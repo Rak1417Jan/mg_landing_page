@@ -18,11 +18,17 @@ export default function HeroSection() {
             {/* Quote Modal */}
             <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />
 
-            {/* Abstract Tech Background */}
-            <div className="absolute inset-0 z-0 opacity-20">
-                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(18,18,18,0)_2px,transparent_2px),linear-gradient(90deg,rgba(18,18,18,0)_2px,transparent_2px)] bg-[length:40px_40px] [background-position:center_center] border-b border-white/5" />
-                <div className="absolute top-20 left-10 w-96 h-96 bg-neon-cyan/20 rounded-full blur-[120px]" />
-                <div className="absolute bottom-20 right-10 w-96 h-96 bg-neon-magenta/20 rounded-full blur-[120px]" />
+            {/* Abstract Tech Background & Video */}
+            <div className="absolute inset-0 z-0 opacity-40">
+                <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="absolute top-0 left-0 w-full h-full object-cover opacity-60 mix-blend-luminosity"
+                >
+                    <source src="/images/digitalfoil.mp4" type="video/mp4" />
+                </video>
             </div>
 
             <div className="container mx-auto px-4 md:px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -77,15 +83,15 @@ export default function HeroSection() {
                 <motion.div
                     className="order-1 lg:order-2 relative"
                     initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    animate={{ opacity: 1, scale: 1.25 }}
                     transition={{ duration: 0.8, delay: 0.2 }}
                 >
                     {/* Machine Image */}
                     <div className="relative w-full aspect-[4/3] flex items-center justify-center group">
-                        <div className="relative w-full h-full p-4">
+                        <div className="relative w-full h-full">
                             <Image
                                 src="/images/mgi-hero.png"
-                                alt="MGI JetVarnish 3D"
+                                alt="MGI AccurioShine 3600"
                                 width={800}
                                 height={600}
                                 className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(0,255,255,0.15)] relative z-10"
@@ -93,17 +99,11 @@ export default function HeroSection() {
                             />
                         </div>
 
-                        {/* Holographic Scanner Overlay */}
-                        <motion.div
-                            className="absolute inset-0 border-t-2 border-neon-cyan/50 bg-gradient-to-b from-neon-cyan/10 to-transparent pointer-events-none z-20"
-                            initial={{ top: "0%" }}
-                            animate={{ top: "100%" }}
-                            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                        />
+                        {/* Holographic Scanner Overlay REMOVED */}
 
                         {/* Tech Specs Floating Markers */}
                         <motion.div
-                            className="absolute top-1/4 right-0 z-30"
+                            className="absolute top-1/4 right-12 md:right-20 z-30"
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1 }}

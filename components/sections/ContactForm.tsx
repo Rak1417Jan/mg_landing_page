@@ -127,10 +127,18 @@ export default function ContactForm() {
                             </div>
                             <div>
                                 <h4 className="text-white font-bold mb-2">Direct Line</h4>
-                                <a href="tel:+919257035570" className="text-2xl font-mono text-white hover:text-neon-cyan transition-colors">
-                                    +91 92570 35570
-                                </a>
-                                <p className="text-xs text-gray-500 mt-1">Available 9 AM - 9 PM</p>
+                                <div className="space-y-1">
+                                    <a href="tel:+919257035570" className="block text-2xl font-mono text-white hover:text-neon-cyan transition-colors">
+                                        +91 92570 35570
+                                    </a>
+                                    <a href="tel:+919784112272" className="block text-lg font-mono text-gray-300 hover:text-neon-cyan transition-colors">
+                                        +91 97841 12272
+                                    </a>
+                                    <a href="tel:+9101414503777" className="block text-md font-mono text-gray-400 hover:text-neon-cyan transition-colors">
+                                        0141-4503777
+                                    </a>
+                                </div>
+                                <p className="text-xs text-gray-500 mt-2">Available 9 AM - 9 PM</p>
                             </div>
                             <div>
                                 <h4 className="text-white font-bold mb-2">Email</h4>

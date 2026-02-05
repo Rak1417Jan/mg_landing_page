@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Scissors, Sticker, Package } from "lucide-react";
+import Image from "next/image";
 
 export default function DieCuttingSection() {
     return (
@@ -58,24 +59,20 @@ export default function DieCuttingSection() {
                         </ul>
                     </motion.div>
 
-                    {/* Card 3 */}
-                    <motion.div
-                        className="bg-zinc-900 p-8 rounded-xl border border-zinc-800 hover:border-neon-yellow/50 transition-colors group"
-                        whileHover={{ y: -5 }}
-                    >
-                        <div className="w-12 h-12 bg-black rounded-lg flex items-center justify-center mb-6 group-hover:bg-neon-yellow group-hover:text-black transition-colors">
-                            <Package size={24} />
+                    {/* Card 3 - Replaced with Image Visual */}
+                    <div className="relative rounded-xl overflow-hidden border border-zinc-800 group h-80">
+                        <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-transparent transition-colors" />
+                        <Image
+                            src="/images/digital_die_cut.jpeg"
+                            alt="Digital Die Cut Sample"
+                            fill
+                            className="object-cover"
+                        />
+                        <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-black to-transparent z-20">
+                            <h3 className="text-xl font-bold text-white mb-2">Precision Die-Cutting</h3>
+                            <p className="text-sm text-gray-300">Intricate cuts without expensive dies.</p>
                         </div>
-                        <h3 className="text-xl font-bold text-white mb-3">Finishing Operations</h3>
-                        <p className="text-gray-400 text-sm mb-4">
-                            Precision cutting and creasing for complex folding projects.
-                        </p>
-                        <ul className="text-xs text-gray-500 space-y-1">
-                            <li>• Half-Cutting</li>
-                            <li>• Creasing / Scoring</li>
-                            <li>• Perforation</li>
-                        </ul>
-                    </motion.div>
+                    </div>
                 </div>
             </div>
         </section>

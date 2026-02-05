@@ -6,7 +6,7 @@ import { Cpu, Printer, Scissors, Layers } from "lucide-react";
 
 const machines = [
     {
-        name: "MGI JETVARNISH 3D",
+        name: "MGI AccurioShine 3600",
         role: "Digital Embellishment",
         specs: "Spot UV, 3D Raised, Hot Foil",
         icon: Layers,

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Check, X, Layers, Sparkles } from "lucide-react";
+import Image from "next/image";
 
 export default function MGIFeatureShowcase() {
     return (
@@ -19,7 +20,7 @@ export default function MGIFeatureShowcase() {
                                 <Layers size={20} />
                             </div>
                             <span className="text-neon-magenta font-bold uppercase tracking-widest text-sm">
-                                MGI JetVarnish 3D
+                                MGI AccurioShine 3600
                             </span>
                         </div>
 
@@ -83,15 +84,16 @@ export default function MGIFeatureShowcase() {
                             </div>
 
                             {/* Visual Representation of Layers */}
-                            <div className="mt-8 pt-8 border-t border-white/10 text-center">
-                                <p className="text-xs text-gray-500 uppercase tracking-widest mb-4">Layer Build-up</p>
-                                <div className="flex justify-center items-end gap-1 h-20">
-                                    <motion.div className="w-8 bg-zinc-800" animate={{ height: "40%" }} />
-                                    <motion.div className="w-8 bg-cyan-900" animate={{ height: "60%" }} />
-                                    <motion.div className="w-8 bg-blue-600" animate={{ height: "100%" }} />
-                                    <motion.div className="w-8 bg-neon-cyan shadow-[0_0_15px_rgba(0,255,255,0.5)]" animate={{ height: "80%" }} />
+                            <div className="mt-8 pt-8 border-t border-white/10 text-center relative h-64 w-full">
+                                <Image
+                                    src="/images/spot_uv_foil.jpeg"
+                                    alt="Spot UV and Foil Sample"
+                                    fill
+                                    className="object-cover rounded-lg opacity-80"
+                                />
+                                <div className="absolute bottom-2 left-2 bg-black/70 px-2 py-1 rounded text-xs text-white">
+                                    Actual Result
                                 </div>
-                                <p className="text-xs text-gray-600 mt-2">Paper • Toner • Varnish • Foil</p>
                             </div>
                         </div>
                     </div>

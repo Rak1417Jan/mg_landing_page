@@ -19,7 +19,7 @@ export default function PrintingCapability() {
                             5-Color Production <br /> Printing
                         </h2>
                         <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                            We go beyond standard 4-color printing. Our **Ricoh Pro C7500** and **Konica Minolta AccurioPress** engines support a 5th color station for specialized applications.
+                            We go beyond standard 4-color printing. Our <strong className="text-white">Ricoh Pro C7500</strong> and <strong className="text-white">Konica Minolta AccurioPress</strong> engines support a 5th color station for specialized applications.
                         </p>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -59,11 +59,11 @@ export default function PrintingCapability() {
                     <div className="lg:w-1/2 relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 flex items-center justify-center">
                         <div className="relative w-full aspect-square md:aspect-video lg:aspect-square">
                             <Image
-                                src="/images/ricoh-c7500.png"
+                                src="/images/cmyk_white_digital_print.jpeg"
                                 alt="Ricoh Pro C7500 5-Color Production Printer"
                                 width={600}
                                 height={600}
-                                className="object-contain w-full h-full relative z-10"
+                                className="object-cover w-full h-full relative z-10 rounded-xl"
                             />
 
                             {/* Decorative Glow */}
