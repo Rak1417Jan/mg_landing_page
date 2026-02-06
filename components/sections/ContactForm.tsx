@@ -1,8 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Upload, Send, MessageCircle, X } from "lucide-react";
 import clsx from "clsx";
+import { useHaptics } from "@/hooks/use-haptics";
+import { useSoundEffects } from "@/hooks/use-sound-effects";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 
 export default function ContactForm() {
     const [loading, setLoading] = useState(false);
@@ -77,6 +80,20 @@ export default function ContactForm() {
             setLoading(false);
         }
     };
+
+    const { triggerHaptic } = useHaptics();
+    const { playSound } = useSoundEffects();
+
+    // ... existing logic ...
+
+    useEffect(() => {
+        if (success) {
+            playSound("success");
+            triggerHaptic("success");
+        }
+    }, [success, playSound, triggerHaptic]);
+
+    // ... existing logic ...
 
     if (success) {
         return (

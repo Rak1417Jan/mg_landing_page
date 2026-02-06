@@ -1,6 +1,7 @@
 "use client";
 
 import { Square, Scissors, Layers, Book, StickyNote, FileText, Circle } from "lucide-react";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 
 const finishes = [
     { name: "Glue Binding", icon: Book },
@@ -25,10 +26,12 @@ export default function FinishingServicesGrid() {
 
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {finishes.map((item, idx) => (
-                        <div key={idx} className="flex flex-col items-center justify-center p-6 bg-zinc-900/30 rounded-lg hover:bg-zinc-900/80 transition-colors border border-dashed border-zinc-800 hover:border-zinc-700 hover:border-solid group">
-                            <item.icon className="text-gray-500 mb-3 group-hover:text-neon-cyan transition-colors" size={24} strokeWidth={1.5} />
-                            <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{item.name}</span>
-                        </div>
+                        <ScrollAnimation key={idx} animation="fadeInUp" delay={idx * 0.05}>
+                            <div className="flex flex-col items-center justify-center p-6 bg-zinc-900/30 rounded-lg hover:bg-zinc-900/80 transition-colors border border-dashed border-zinc-800 hover:border-zinc-700 hover:border-solid group">
+                                <item.icon className="text-gray-500 mb-3 group-hover:text-neon-cyan transition-colors" size={24} strokeWidth={1.5} />
+                                <span className="text-sm font-medium text-gray-300 group-hover:text-white transition-colors">{item.name}</span>
+                            </div>
+                        </ScrollAnimation>
                     ))}
                 </div>
             </div>

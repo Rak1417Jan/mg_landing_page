@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Palette, Droplet, Layers } from "lucide-react";
 import Image from "next/image";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 
 export default function PrintingCapability() {
     return (
@@ -12,51 +13,61 @@ export default function PrintingCapability() {
 
                     {/* Content */}
                     <div className="lg:w-1/2">
-                        <span className="text-neon-cyan text-xs font-bold uppercase tracking-widest mb-2 block">
-                            Beyond CMYK
-                        </span>
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-                            5-Color Production <br /> Printing
-                        </h2>
-                        <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                            We go beyond standard 4-color printing. Our <strong className="text-white">Ricoh Pro C7500</strong> and <strong className="text-white">Konica Minolta AccurioPress</strong> engines support a 5th color station for specialized applications.
-                        </p>
+                        <ScrollAnimation animation="fadeInUp" delay={0.1}>
+                            <span className="text-neon-cyan text-xs font-bold uppercase tracking-widest mb-2 block">
+                                Beyond CMYK
+                            </span>
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                                5-Color Production <br /> Printing
+                            </h2>
+                            <p className="text-gray-400 text-lg mb-8 leading-relaxed">
+                                We go beyond standard 4-color printing. Our <strong className="text-white">Ricoh Pro C7500</strong> and <strong className="text-white">Konica Minolta AccurioPress</strong> engines support a 5th color station for specialized applications.
+                            </p>
+                        </ScrollAnimation>
 
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-white text-black rounded">
-                                        <Droplet size={16} />
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <ScrollAnimation animation="fadeInUp" delay={0.2} className="h-full">
+                                    <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800 h-full">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="p-2 bg-white text-black rounded">
+                                                <Droplet size={16} />
+                                            </div>
+                                            <h4 className="text-white font-bold">White Ink</h4>
+                                        </div>
+                                        <p className="text-sm text-gray-500">Print opacity on transparent, dark, or metallic stocks.</p>
                                     </div>
-                                    <h4 className="text-white font-bold">White Ink</h4>
-                                </div>
-                                <p className="text-sm text-gray-500">Print opacity on transparent, dark, or metallic stocks.</p>
-                            </div>
+                                </ScrollAnimation>
 
-                            <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-neon-cyan text-black rounded">
-                                        <Palette size={16} />
+                                <ScrollAnimation animation="fadeInUp" delay={0.3} className="h-full">
+                                    <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800 h-full">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="p-2 bg-neon-cyan text-black rounded">
+                                                <Palette size={16} />
+                                            </div>
+                                            <h4 className="text-white font-bold">Neon Colors</h4>
+                                        </div>
+                                        <p className="text-sm text-gray-500">Expand gamut with Neon Pink and Neon Yellow toners.</p>
                                     </div>
-                                    <h4 className="text-white font-bold">Neon Colors</h4>
-                                </div>
-                                <p className="text-sm text-gray-500">Expand gamut with Neon Pink and Neon Yellow toners.</p>
-                            </div>
+                                </ScrollAnimation>
 
-                            <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800">
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="p-2 bg-zinc-700 text-white rounded">
-                                        <Layers size={16} />
+                                <ScrollAnimation animation="fadeInUp" delay={0.4} className="col-span-1 sm:col-span-2 md:col-span-1 h-full">
+                                    <div className="p-4 bg-zinc-900 rounded-lg border border-zinc-800 h-full">
+                                        <div className="flex items-center gap-3 mb-2">
+                                            <div className="p-2 bg-zinc-700 text-white rounded">
+                                                <Layers size={16} />
+                                            </div>
+                                            <h4 className="text-white font-bold">Textured Media</h4>
+                                        </div>
+                                        <p className="text-sm text-gray-500">Flawless adhesion on textured papers up to 450gsm.</p>
                                     </div>
-                                    <h4 className="text-white font-bold">Textured Media</h4>
-                                </div>
-                                <p className="text-sm text-gray-500">Flawless adhesion on textured papers up to 450gsm.</p>
+                                </ScrollAnimation>
                             </div>
                         </div>
                     </div>
 
                     {/* Machine Visual / Graphic */}
-                    <div className="lg:w-1/2 relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 flex items-center justify-center">
+                    <ScrollAnimation animation="scaleUp" delay={0.2} className="lg:w-1/2 relative bg-zinc-900/50 border border-white/5 rounded-2xl p-8 flex items-center justify-center">
                         <div className="relative w-full aspect-square md:aspect-video lg:aspect-square">
                             <Image
                                 src="/images/cmyk_white_digital_print.jpeg"
@@ -88,10 +99,10 @@ export default function PrintingCapability() {
                                 Neon Toner
                             </motion.div>
                         </div>
-                    </div>
+                    </ScrollAnimation>
 
                 </div>
-            </div>
-        </section>
+            </div >
+        </section >
     );
 }

@@ -33,6 +33,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Utilities for glassmorphism and foil effects */
 @layer utilities {
   .glass {

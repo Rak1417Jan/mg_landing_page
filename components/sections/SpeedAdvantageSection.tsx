@@ -2,16 +2,13 @@
 
 import { motion } from "framer-motion";
 import { Clock, Zap } from "lucide-react";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 
 export default function SpeedAdvantageSection() {
     return (
         <section className="py-24 bg-gradient-to-r from-neon-cyan/5 via-black to-neon-magenta/5 border-y border-white/10 relative overflow-hidden">
             <div className="container mx-auto px-4 md:px-6 relative z-10 text-center">
-                <motion.div
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                >
+                <ScrollAnimation animation="scaleUp" duration={0.8}>
                     <div className="inline-flex items-center gap-2 text-neon-cyan font-bold uppercase tracking-widest mb-4">
                         <Zap size={20} />
                         <span>The Speed Advantage</span>
@@ -50,7 +47,7 @@ export default function SpeedAdvantageSection() {
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </ScrollAnimation>
             </div>
         </section>
     );

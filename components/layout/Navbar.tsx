@@ -30,7 +30,10 @@ export default function Navbar() {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         className={clsx(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
           scrolled ? "bg-black/80 backdrop-blur-md border-white/10 py-3" : "py-6 bg-transparent"
@@ -114,7 +117,7 @@ export default function Navbar() {
             </motion.div>
           )}
         </AnimatePresence>
-      </nav>
+      </motion.nav>
 
       {/* Quote Modal */}
       <QuoteModal isOpen={isQuoteModalOpen} onClose={() => setIsQuoteModalOpen(false)} />

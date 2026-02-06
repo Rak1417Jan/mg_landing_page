@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import clsx from "clsx";
 import { ArrowUpRight } from "lucide-react";
+import ScrollAnimation from "@/components/ui/ScrollAnimation";
 
 import Image from "next/image";
 
@@ -51,16 +52,14 @@ export default function ApplicationsShowcase() {
 
                 <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
                     {applications.map((app, idx) => (
-                        <motion.div
+                        <ScrollAnimation
                             key={idx}
+                            animation="scaleUp"
+                            delay={idx * 0.1}
                             className={clsx(
                                 "relative rounded-xl overflow-hidden group flex flex-col justify-end border border-white/10 bg-zinc-900 transition-all hover:bg-zinc-800",
                                 app.size
                             )}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: idx * 0.1 }}
-                            viewport={{ once: true }}
                         >
                             {/* Background Image with Overlay */}
                             <div className="absolute inset-0 z-0">
@@ -83,7 +82,7 @@ export default function ApplicationsShowcase() {
                                     {app.desc}
                                 </p>
                             </div>
-                        </motion.div>
+                        </ScrollAnimation>
                     ))}
                 </div>
             </div>
