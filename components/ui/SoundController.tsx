@@ -2,14 +2,15 @@
 
 import { useSoundContext } from "@/components/providers/SoundProvider";
 import { useSoundEffects } from "@/hooks/use-sound-effects";
-import { Volume2, VolumeX } from "lucide-react";
+import { Volume2, VolumeX, Settings } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export default function SoundController() {
-    const { isMuted, toggleMute } = useSoundContext();
+    const { isMuted, toggleMute, volume, setVolume, unlockAudio } = useSoundContext();
     const { playSound } = useSoundEffects();
     const [mounted, setMounted] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     useEffect(() => {
         setMounted(true);
@@ -19,45 +20,24 @@ export default function SoundController() {
     useEffect(() => {
         if (typeof window === "undefined") return;
 
-        const handleInteraction = (e: MouseEvent, type: "hover" | "click") => {
-            const target = e.target as HTMLElement;
-            // Check if the target is interactive (button, link, or specific classes)
-            const interactive = target.closest("button, a, [role='button'], .hover-sound");
-
-            if (interactive) {
-                // Determine if we should play logic (debouncing could be added if needed)
-                if (type === "hover") {
-                    // Prevent crazy spam if moving within same element (mouseenter vs mouseover)
-                    // We use mouseover delegated, so we rely on the event firing.
-                    playSound("hover");
-                } else if (type === "click") {
-                    playSound("click");
-                }
-            }
-        };
-
-        const onMouseOver = (e: MouseEvent) => handleInteraction(e, "hover");
-        const onClick = (e: MouseEvent) => handleInteraction(e, "click");
-
-        // Use capture to ensure we catch it before strict stopPropagation (though bubbling is usually fine)
-        // Check performance implications? it's just a check.
-        // For hover, 'mouseover' bubbles. 'mouseenter' does not. Delegated 'mouseover' is standard.
-        // But 'mouseover' fires many times when moving inside children. 'mouseenter' doesn't bubble so can't be delegated easily on body.
-        // Solution: check if the relatedTarget is same container. Or simplified: just play sound. 
-        // Better: standard delegation with check.
-
-        // Actually, for a truly "sober" effect, maybe we only want it when entering the element, not moving inside.
-        // Implementing a smart hover listener that only triggers when entering the interactive zone.
         const onMouseOverSmart = (e: MouseEvent) => {
             const target = e.target as HTMLElement;
             const interactive = target.closest("button, a, [role='button'], input, textarea, select");
             if (interactive) {
-                // Check if we just entered this specific interactive element
-                // e.relatedTarget is where we came from.
                 const from = e.relatedTarget as Node | null;
                 if (!from || (from !== interactive && !interactive.contains(from))) {
                     playSound("hover");
                 }
+            }
+        };
+
+        const onClick = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const interactive = target.closest("button, a, [role='button']");
+            if (interactive) {
+                playSound("click");
+                // Also unlock audio on first click
+                unlockAudio();
             }
         };
 
@@ -68,50 +48,85 @@ export default function SoundController() {
             window.removeEventListener("mouseover", onMouseOverSmart);
             window.removeEventListener("click", onClick);
         };
-    }, [playSound]);
+    }, [playSound, unlockAudio]);
 
     if (!mounted) return null;
 
     return (
-        <motion.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            onClick={(e) => {
-                // Prevent double click sound from global listener? 
-                // The global listener will catch this too. That's fine.
-                // Or stopPropagation? 
-                // e.stopPropagation(); // If we stop here, we might miss other logic.
-                // Let's just let it play or let the global handle it.
-                toggleMute();
-            }}
-            className="fixed bottom-6 left-6 z-50 p-3 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-neon-cyan shadow-[0_0_20px_rgba(0,255,255,0.2)] hover:bg-neon-cyan/10 transition-colors"
-            title={isMuted ? "Unmute Sounds" : "Mute Sounds"}
-        >
-            <AnimatePresence mode="wait" initial={false}>
-                {isMuted ? (
+        <>
+            {/* Settings Panel */}
+            <AnimatePresence>
+                {showSettings && (
                     <motion.div
-                        key="muted"
-                        initial={{ opacity: 0, rotate: -90 }}
-                        animate={{ opacity: 1, rotate: 0 }}
-                        exit={{ opacity: 0, rotate: 90 }}
-                        transition={{ duration: 0.2 }}
+                        initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 20, scale: 0.9 }}
+                        className="fixed bottom-24 left-6 z-50 bg-black/90 backdrop-blur-md border border-white/10 rounded-xl p-4 shadow-xl min-w-[200px]"
                     >
-                        <VolumeX size={24} />
-                    </motion.div>
-                ) : (
-                    <motion.div
-                        key="unmuted"
-                        initial={{ opacity: 0, rotate: 90 }}
-                        animate={{ opacity: 1, rotate: 0 }}
-                        exit={{ opacity: 0, rotate: -90 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        <Volume2 size={24} />
+                        <h3 className="text-white font-semibold mb-3 text-sm">Sound Settings</h3>
+
+                        {/* Volume Slider */}
+                        <div className="mb-3">
+                            <label className="text-gray-400 text-xs mb-2 block">Volume</label>
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={volume * 100}
+                                onChange={(e) => setVolume(Number(e.target.value) / 100)}
+                                className="w-full h-1 bg-white/20 rounded-lg appearance-none cursor-pointer accent-neon-cyan"
+                            />
+                            <span className="text-neon-cyan text-xs">{Math.round(volume * 100)}%</span>
+                        </div>
+
+                        {/* Mute Toggle */}
+                        <button
+                            onClick={toggleMute}
+                            className="w-full flex items-center justify-between px-3 py-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors"
+                        >
+                            <span className="text-white text-sm">Sound Effects</span>
+                            <span className={`text-xs font-semibold ${isMuted ? "text-red-400" : "text-green-400"}`}>
+                                {isMuted ? "OFF" : "ON"}
+                            </span>
+                        </button>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </motion.button>
+
+            {/* Main Button */}
+            <motion.button
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                onClick={() => setShowSettings(!showSettings)}
+                className="fixed bottom-6 left-6 z-50 p-3 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-neon-cyan shadow-[0_0_20px_rgba(0,255,255,0.2)] hover:bg-neon-cyan/10 transition-colors"
+                title={isMuted ? "Sound Settings (Muted)" : "Sound Settings"}
+            >
+                <AnimatePresence mode="wait" initial={false}>
+                    {isMuted ? (
+                        <motion.div
+                            key="muted"
+                            initial={{ opacity: 0, rotate: -90 }}
+                            animate={{ opacity: 1, rotate: 0 }}
+                            exit={{ opacity: 0, rotate: 90 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <VolumeX size={24} />
+                        </motion.div>
+                    ) : (
+                        <motion.div
+                            key="unmuted"
+                            initial={{ opacity: 0, rotate: 90 }}
+                            animate={{ opacity: 1, rotate: 0 }}
+                            exit={{ opacity: 0, rotate: -90 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <Volume2 size={24} />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.button>
+        </>
     );
 }
