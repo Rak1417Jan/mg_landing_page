@@ -16,6 +16,8 @@ export default function Home() {
     <>
       <HeroSection />
       <CoreUSPStrip />
+      {/* Vertical breathing room before infrastructure section */}
+      <div className="h-20 bg-black" />
       <div id="services">
         <TechPowerSection />
       </div>
