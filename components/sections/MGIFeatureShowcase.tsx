@@ -115,7 +115,7 @@ export default function MGIFeatureShowcase() {
             >
               <Image
                 src={outputImages[0].src}
-                alt={outputImages[0].label}
+                alt="MG Digital Press premium business cards featuring 3D raised Spot UV and foil embellishments (MGI AccurioShine technology)"
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
@@ -137,7 +137,7 @@ export default function MGIFeatureShowcase() {
                 >
                   <Image
                     src={img.src}
-                    alt={img.label}
+                    alt={`MG Digital Press luxury print embellishment sample - ${(img as any).label.toLowerCase()}`}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />

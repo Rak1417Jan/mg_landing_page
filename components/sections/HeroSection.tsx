@@ -12,22 +12,22 @@ import { useTranslation } from "@/components/providers/TranslationContext";
 const outputImages = [
   {
     src: "/images/hero-premium-outputs.jpg",
-    alt: "Premium printed outputs — business cards, invitations, brochures",
+    alt: "Premium printed outputs by MG Digital Press — luxury business cards, custom invitations, and high-quality brochures",
     label: "Premium Outputs",
   },
   {
     src: "/images/hero-spot-uv-macro.jpg",
-    alt: "Macro spot UV texture on luxury print",
+    alt: "Macro detail of 3D Spot UV texture and digital foiling on luxury print packaging",
     label: "Spot UV Texture",
   },
   {
     src: "/images/mgi-output-business-cards.jpg",
-    alt: "Business cards with 3D raised spot UV and gold foil",
+    alt: "Premium business cards featuring 3D raised spot UV coating and gold foil embellishments by MG Digital Press",
     label: "Business Cards",
   },
   {
     src: "/images/mgi-output-packaging.jpg",
-    alt: "Premium packaging with embossed spot UV",
+    alt: "Custom luxury packaging boxes with embossed spot UV and premium print finishing",
     label: "Luxury Packaging",
   },
 ];
@@ -48,6 +48,7 @@ export default function HeroSection() {
           loop
           muted
           playsInline
+          preload="auto"
           className="absolute top-0 left-0 w-full h-full object-cover mix-blend-luminosity"
         >
           <source src="/images/digitalfoil.mp4" type="video/mp4" />

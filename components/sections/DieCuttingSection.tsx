@@ -75,7 +75,7 @@ export default function DieCuttingSection() {
               <div className="absolute inset-0 bg-black/20 z-10 group-hover:bg-transparent transition-colors" />
               <Image
                 src="/images/digital_die_cut.jpeg"
-                alt="Digital die cut sample — precision cutting output"
+                alt="MG Digital Press custom digital die-cutting and kiss-cutting output for bespoke packaging and sticker labels (Iecho PK tech)"
                 fill
                 className="object-cover"
               />

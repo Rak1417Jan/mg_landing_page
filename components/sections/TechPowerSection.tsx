@@ -35,7 +35,7 @@ const machines: Machine[] = [
       { src: "/images/mgi-output-wedding-invite.jpg", label: "Wedding Invites" },
       { src: "/images/mgi-output-packaging.jpg", label: "Luxury Packaging" },
       { src: "/images/spot_uv_foil.jpeg", label: "Spot UV & Foil" },
-    ],
+    ].map(img => ({ ...img, alt: `MG Digital Press MGI AccurioShine digital embellishment output - ${img.label.toLowerCase()}` })),
   },
   {
     id: "ricoh",
@@ -52,7 +52,7 @@ const machines: Machine[] = [
       { src: "/images/cmyk_white_digital_print.jpeg", label: "5-Color Output" },
       { src: "/images/envelopes.jpeg", label: "Envelopes" },
       { src: "/images/texture-foil.jpg", label: "Specialty Stock" },
-    ],
+    ].map(img => ({ ...img, alt: `MG Digital Press Ricoh Pro C7500 high volume 5-color print output - ${img.label.toLowerCase()}` })),
   },
   {
     id: "konica",
@@ -69,7 +69,7 @@ const machines: Machine[] = [
       { src: "/images/foil_stickers.jpeg", label: "Foil Stickers" },
       { src: "/images/cmyk_white_digital_print.jpeg", label: "High Volume Print" },
       { src: "/images/envelopes.jpeg", label: "Commercial Print" },
-    ],
+    ].map(img => ({ ...img, alt: `MG Digital Press Konica Minolta commercial print output - ${img.label.toLowerCase()}` })),
   },
   {
     id: "iecho",
@@ -86,7 +86,7 @@ const machines: Machine[] = [
       { src: "/images/foil_stickers.jpeg", label: "Custom Labels" },
       { src: "/images/iecho-cutter.png", label: "Smart Cutting" },
       { src: "/images/digital_die_cut.jpeg", label: "Packaging Cuts" },
-    ],
+    ].map(img => ({ ...img, alt: `MG Digital Press Iecho digital die-cutting finishing output - ${img.label.toLowerCase()}` })),
   },
   {
     id: "polar",
@@ -103,7 +103,7 @@ const machines: Machine[] = [
       { src: "/images/envelopes.jpeg", label: "Clean Edges" },
       { src: "/images/cmyk_white_digital_print.jpeg", label: "Bulk Cutting" },
       { src: "/images/foil_stickers.jpeg", label: "Professional Finish" },
-    ],
+    ].map(img => ({ ...img, alt: `MG Digital Press Polar 76 EM precision paper cutting output - ${img.label.toLowerCase()}` })),
   },
 ];
 
@@ -258,7 +258,7 @@ export default function TechPowerSection() {
                     <div key={i} className="relative overflow-hidden rounded-lg group">
                       <Image
                         src={img.src}
-                        alt={img.label}
+                        alt={(img as any).alt || img.label}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                         sizes="(max-width: 768px) 50vw, 30vw"

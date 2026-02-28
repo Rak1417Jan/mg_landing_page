@@ -81,7 +81,7 @@ export default function PrintingCapability() {
             <div className="relative w-full aspect-square md:aspect-video lg:aspect-square">
               <Image
                 src="/images/ricoh-output-brochures.jpg"
-                alt="High-color 5th color production print output — premium brochures and marketing materials"
+                alt="MG Digital Press high-volume 5-color (CMYK + White) commercial printing output — premium tri-fold marketing brochures"
                 width={600}
                 height={600}
                 className="object-cover w-full h-full relative z-10 rounded-xl"
