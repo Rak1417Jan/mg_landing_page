@@ -21,9 +21,9 @@ const translations: Record<Language, Record<string, string>> = {
     "nav.brand": "MG Digital Press",
 
     // Hero
-    "hero.badge": "Premium Digital Print Solutions",
-    "hero.h1.line1": "A Complete Digital",
-    "hero.h1.line2": "Printing Solution",
+    "hero.badge": "A complete digital printing solution",
+    "hero.h1.line1": "Print that you",
+    "hero.h1.line2": "Feel",
     "hero.sub": "From Embellishment to Finishing — We Deliver Results, Not Just Prints.",
     "hero.tags": "Spot UV  ·  3D Foil  ·  5-Color  ·  Precision Cut  ·  High Volume",
     "hero.cta.quote": "Get a Quote",
