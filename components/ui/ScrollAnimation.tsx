@@ -11,8 +11,6 @@ type AnimationType =
     | "slideLeft"
     | "none";
 
-import { useSoundEffects } from "@/hooks/use-sound-effects";
-
 // ... existing imports
 
 interface ScrollAnimationProps {
@@ -23,7 +21,6 @@ interface ScrollAnimationProps {
     className?: string;
     viewport?: UseInViewOptions;
     as?: React.ElementType; // allow rendering as different tags (e.g. span, section)
-    sound?: string; // e.g. "reveal"
 }
 
 const variants: Record<string, { hidden: Variant; visible: Variant }> = {
@@ -61,18 +58,13 @@ export default function ScrollAnimation({
     className = "",
     viewport = { once: true, margin: "-10%" },
     as = "div",
-    sound = "reveal",
 }: ScrollAnimationProps) {
     const Component = motion[as as keyof typeof motion] as any;
-    const { playSound } = useSoundEffects();
 
     return (
         <Component
             initial="hidden"
             whileInView="visible"
-            onViewportEnter={() => {
-                if (sound) playSound(sound as any);
-            }}
             viewport={viewport}
             transition={{
                 duration,

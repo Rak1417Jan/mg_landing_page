@@ -1,7 +1,5 @@
 "use client";
 
-import { useHaptics } from "@/hooks/use-haptics";
-import { useSoundEffects } from "@/hooks/use-sound-effects";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Layers, Printer, Scissors, CheckCircle2 } from "lucide-react";
 import Image from "next/image";
@@ -117,8 +115,6 @@ export default function TechPowerSection() {
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
-  const { triggerHaptic } = useHaptics();
-  const { playSound } = useSoundEffects();
   const { t } = useTranslation();
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -128,8 +124,6 @@ export default function TechPowerSection() {
     );
     if (newIndex !== activeIndex) {
       setActiveIndex(newIndex);
-      triggerHaptic("selection");
-      playSound("reveal");
     }
   });
 

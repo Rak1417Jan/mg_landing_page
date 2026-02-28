@@ -4,8 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
-import { SoundProvider } from "@/components/providers/SoundProvider";
-import SoundController from "@/components/ui/SoundController";
 import { LanguageProvider } from "@/components/providers/TranslationContext";
 
 const geistSans = Geist({
@@ -34,15 +32,12 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-neon-cyan selection:text-black`}
       >
         <LanguageProvider>
-          <SoundProvider>
-            <Navbar />
-            <main className="min-h-screen">
-              {children}
-            </main>
-            <FloatingWhatsApp />
-            <SoundController />
-            <Footer />
-          </SoundProvider>
+          <Navbar />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <FloatingWhatsApp />
+          <Footer />
         </LanguageProvider>
       </body>
     </html>
